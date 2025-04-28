@@ -50,6 +50,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Create user.json with write permissions
+        run: |
+          $userJsonPath = "$env:USERPROFILE\.sitecore\user.json"
+
+          # Ensure the folder exists
+          if (-not (Test-Path -Path (Split-Path -Parent $userJsonPath))) {
+              New-Item -ItemType Directory -Force -Path (Split-Path -Parent $userJsonPath)
+          }
+
+          # Create user.json file with the necessary configuration
+          $userJsonContent = @{
+              "environment-name" = "deployment"
+              "allow-writes" = $true
+          } | ConvertTo-Json -Compress
+
+          # Write the content to the user.json file
+          Set-Content -Path $userJsonPath -Value $userJsonContent
+
       - name: Install Sitecore CLI and Configure NuGet Source
         run: |
           dotnet nuget add source -n Sitecore https://nuget.sitecore.com/resources/v3/index.json
