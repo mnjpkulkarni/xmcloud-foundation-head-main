@@ -54,7 +54,7 @@ jobs:
         run: |
           dotnet nuget add source -n Sitecore https://nuget.sitecore.com/resources/v3/index.json
           dotnet tool install Sitecore.CLI
-          sitecore plugin init --overwrite
+          dotnet sitecore plugin init --overwrite
 
       - name: Add Serialization Plugin
         run: dotnet sitecore plugin add -n Sitecore.DevEx.Extensibility.Serialization
