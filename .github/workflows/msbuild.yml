@@ -52,6 +52,7 @@ jobs:
 
       - name: Install Sitecore CLI and Configure NuGet Source
         run: |
+          dotnet new tool-manifest --force
           dotnet nuget add source -n Sitecore https://nuget.sitecore.com/resources/v3/index.json
           dotnet tool install Sitecore.CLI
 
