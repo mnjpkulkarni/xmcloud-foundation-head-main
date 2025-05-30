@@ -27,6 +27,15 @@ on:
           - dev
           - uat
           - production
+      application:
+        description: 'Select the project to deploy'
+        required: true
+        default: 'Backend'
+        type: choice
+        options:
+          - Backend
+          - Frontend
+     
 
 env:
   # Path to the solution file relative to the root of the project.
