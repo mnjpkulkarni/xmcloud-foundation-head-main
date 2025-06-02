@@ -7,17 +7,6 @@ name: MSBuild
 
 on:
   workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Select the branch to deploy'
-        required: true
-        default: 'main'
-        type: choice
-        options:
-          - main
-          - develop
-          - uat
-          - production
       environment:
         description: 'Select the environment'
         required: true
